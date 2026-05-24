@@ -37,10 +37,10 @@ export const Route = createFileRoute("/products/$slug")({
 });
 
 function ProductPage() {
-  const { product } = Route.useLoaderData();
+  const { product } = Route.useLoaderData() as { product: NonNullable<ReturnType<typeof findProduct>> };
   const { add } = useCart();
   const navigate = useNavigate();
-  const [size, setSize] = useState(product.sizes[0]);
+  const [size, setSize] = useState<string>(product.sizes[0]);
   const related = products.filter((p) => p.slug !== product.slug).slice(0, 3);
 
   return (

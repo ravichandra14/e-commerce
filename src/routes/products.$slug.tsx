@@ -8,7 +8,7 @@ export const Route = createFileRoute("/products/$slug")({
   loader: ({ params }) => {
     const product = findProduct(params.slug);
     if (!product) throw notFound();
-    return { product };
+    return { product } as const;
   },
   head: ({ loaderData }) => ({
     meta: loaderData
